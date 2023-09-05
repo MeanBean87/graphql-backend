@@ -39,7 +39,7 @@ MongoDB can be installed directly from [https://www.mongodb.com/docs/manual/tuto
 
 ## Code Highlights
 
-#### Backend Typedefs:
+#### Back-end Resolvers:
 
 ```js
 const { GraphQLError } = require("graphql");
