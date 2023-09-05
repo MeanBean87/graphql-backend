@@ -1,4 +1,4 @@
-# Social Media NoSQL Backend
+# Module 21: GraphQl Backend - Google Books Search
 
 ## Description
 
