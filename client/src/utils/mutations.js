@@ -1,65 +1,69 @@
-import { gpl } from '@apollo/client';
+import { gql } from "@apollo/client";
 
-export const ADD_USER = gpl`
-    mutation addUser($username: String!, $email: String!, $password: String!) {
-        addUser(username: $username, email: $email, password: $password){
-            token
-            user {
-                _id
-                username
-                email
-            }
-        }
+// ADD_USER will execute the addUser mutation.
+export const ADD_USER = gql`
+  mutation addUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+        email
+      }
     }
+  }
 `;
 
-export const LOGIN_USER = gpl`
-    mutation login($email: String!, $password: String!) {
-        login(email: $email, password: $password){
-            token
-            user {
-                _id
-                username
-                email
-            }
-        }
+// LOGIN_USER will execute the loginUser mutation.
+export const LOGIN_USER = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+        username
+        email
+      }
     }
+  }
 `;
 
-export const SAVE_BOOK = gpl`
-    mutation saveBook($input: savedBook!) {
-        saveBook(input: $input){
-            _id
-            username
-            email
-            bookCount
-            savedBooks {
-                bookId
-                authors
-                description
-                title
-                image
-                link
-            }
-        }
+// SAVE_BOOK will execute the saveBook mutation.
+export const SAVE_BOOK = gql`
+  mutation saveBook($input: BookInput) {
+    saveBook(input: $input) {
+      _id
+      username
+      email
+      bookCount
+      savedBooks {
+        bookId
+        authors
+        image
+        link
+        title
+        description
+      }
     }
+  }
 `;
 
-export const REMOVE_BOOK = gpl`
-    mutation removeBook($bookId: ID!) {
-        removeBook(bookId: $bookId){
-            _id
-            username
-            email
-            bookCount
-            savedBooks {
-                bookId
-                authors
-                description
-                title
-                image
-                link
-            }
-        }
+// DELETE_BOOK will execute the deleteBook mutation.
+export const DELETE_BOOK = gql`
+  mutation deleteBook($bookId: ID!) {
+    deleteBook(bookId: $bookId) {
+      _id
+      username
+      email
+      bookCount
+      savedBooks {
+        bookId
+        authors
+        description
+        title
+        image
+        link
+      }
     }
+  }
 `;

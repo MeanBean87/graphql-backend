@@ -8,12 +8,15 @@ import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 
 const LoginForm = () => {
+  // State Declarations
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
+  // LOGIN_USER mutation hook
   const [loginUser, { error }] = useMutation(LOGIN_USER);
 
+  // useEffect hook to set initial form data
   useEffect(() => {
     if (error) {
       setShowAlert(true);
@@ -22,11 +25,13 @@ const LoginForm = () => {
     }
   }, [error]);
 
+  // Function to handle user form input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
 
+  // Function to handle form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -37,11 +42,15 @@ const LoginForm = () => {
       event.stopPropagation();
     }
 
+    console.log(userFormData);
+
     try {
+      // execute loginUser mutation and pass in variable data from form
       const { data } = await loginUser({
         variables: { ...userFormData },
       });
 
+      // use Auth.login method to log user in
       Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
